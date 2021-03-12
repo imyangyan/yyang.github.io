@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <title>
+        patch |
+        
+        yyang&#39;s Blog
+    </title>
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.png","favicon":"/images/logo.svg","img_position":"left","left_side_width":"260px","content_max_width":"900px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."}},"local_search":{"enable":true,"trigger":"auto","unescape":false,"preload":true},"version":"3.0.4"};
+    KEEP.language = {"search":"Search...","prev":"Prev","next":"Next","prev_posts":"Prev posts","next_posts":"Next posts","page":"Page %d","recent_posts":"Recent Posts","share":"Share","powered_by":"Powered by %s","theme":"Theme","rss_feed":"RSS Feed","category":"Category","categories":"Categories","tag":"Tag","tags":"Tags","tagcloud":"Tag Cloud","comment":"Comment","home":"Home","archive":"Archive","archives":"Archives","about":"About","site_uv":"Visitor Count","site_pv":"Totalview","links":"Links","link":"Link","top":"TOP","read_more":"Read more","wordcount":"Words","min2read":"Mins","changelog":"Changelog","copyright":{"author":"Post author","title":"Post title","link":"Post link","create_time":"Create time","license_title":"Copyright Notice","license_content":"All articles in this blog are licensed under %s unless stating additionally."},"ago":{"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days age","week":"%s weeks age","month":"%s months age","year":"%s years age"}};
+  </script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+<div class="page-container">
+
+    
+
+    <header class="page-header">
+        <div class="header-progress"></div>
+    </header>
+
+    <main class="page-main">
+
+        <div class="page-main-content">
+
+            <div class="page-main-content-top">
+                <header class="header-wrapper">
+
+    <div class="header-content">
+        <a class="logo-title" href="/">
+            yyang&#39;s Blog
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+            </div>
+
+            <div class="page-main-content-middle">
+
+                <main class="main-content normal-code-theme">
+
+                    
+                        <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">patch</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span>yyang</span>
+                        <span class="level">Lv1</span>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-calendar"></i> 2021-02-03 01:46:27
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAVue-js/">深入浅出Vue. js</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>虚拟DOM的最核心部分就是patch，它可以将vnode渲染成真实的DOM。<br>patch也可以叫作patching算法，通过它渲染真实DOM时，并不是暴力覆盖原有DOM，而是比对新旧两个vnode之间有哪些不同，然后根据对比结果找出需要更新的节点进行更新。</p>
+<h2 id="patch介绍"><a href="#patch介绍" class="headerlink" title="patch介绍"></a>patch介绍</h2><p>比对两个vnode之间的差异只是patch的一部分，这是手段，而不是目的。patch的目的其实是修改DOM节点，也可以理解为渲染视图。对现有DOM进行修改需要做三件事：</p>
+<ul>
+<li>创建新增的节点</li>
+<li>删除已经废弃的节点</li>
+<li>修改需要更新的节点<br>我们知道patch的过程中其实就是创建节点、删除节点和更新节点的过程，接下来主要讨论在什么情况下创建新节点，插入到什么位置；在什么情况下删除节点，删除哪个节点；在什么情况下修改节点，修改哪个节点等。</li>
+</ul>
+<h3 id="新增节点"><a href="#新增节点" class="headerlink" title="新增节点"></a>新增节点</h3><p>如果一个节点已经存在于DOM中，那就不需要重新创建一个同样的节点去替换已经存在的节点。事实上，只有那些因为状态的改变而新增的节点在DOM中并不存在时，我们才需要创建一个节点并插入到DOM中。<br>首先，新增节点的一个明显的场景就是，当oldVnode不存在而vnode存在时，就需要使用vnode生成真实的DOM元素并将其插入到视图中去。<br>这通常发生在首次渲染中。因为首次渲染时，DOM中不存在任何节点，所以oldVnode是不存在的。<br>当vnode和oldVnode完全不是同一个节点时，需要使用vnode生成真实的DOM元素并将其插入到视图中。</p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><p>当一个节点只在oldVnode中存在时，我们需要把它从DOM中删除。因为渲染视图时，需要以vnode为标准，所以vnode中不存在的节点有属于被废弃的节点，而被废弃的节点需要从DOM中删除。<br>当oldVnode与vnode完全不是同一个节点时，在DOM中需要使用vnode创建的新节点替换oldVnode所对应的旧节点，而替换过程是将新创建的DOM节点插入到旧节点的旁边，然后再将旧节点删除，从而完成替换过程。</p>
+<h3 id="更新节点"><a href="#更新节点" class="headerlink" title="更新节点"></a>更新节点</h3><p>当新旧两个节点是相同的节点时，我们需要对这两个节点进行比较细致的比对，然后对oldVnode在视图中所对应的真实节点进行更新。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>通过前面的介绍，发现整个patch的过程并不复杂。当oldVnode不存在时，直接使用vnode渲染视图；当oldVnode和vnode都存在但并不是同一个节点时，使用vnode创建的DOM元素替换旧的DOM元素；当oldVnode和vnode是同一个节点时，使用更详细的对比操作真实的DOM节点进行更新。</p>
+<h2 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h2><p>创建一个真实的DOM元素所需的信息都保存在vnode中，我们需要通过vnode来创建一个真实的DOM元素。前面也介绍来vnode是有类型的，所以在创建DOM元素时，最重要的事是根据vnode的类型来创建出相同类型的DOM元素，然后将DOM元素插入到视图中。<br>事实上，只有三种类型的节点会被创建并插入到DOM中：元素节点、注释节点和文本节点。<br>而要判断vnode是否是元素节点，只需要判断它是否具有tag属性即可。如果一个vnode具有tag属性，就认为它是元素节点。接着，我们就可以调用当前环境下的createElement方法来创建真实的元素节点。当一个元素节点被创建后，接下来要做的事情就是将它插入到指定的父节点中。<br>将元素渲染到视图的过程非常简单。只需要调用当前环境下的appendChild方法，就可以将一个元素插入到指定的父节点中。如果这个指定的父节点已经被渲染到视图，那么把元素插入到它的下面将会自动将元素渲染到视图。<br>其实创建元素节点还缺来一个步骤。元素节点通常都会有子节点，所以当一个元素节点被创建后，我们需要将它的子节点也创建出来并插入到这个刚创建出的节点下面。<br>创建子节点的过程是一个递归过程。vnode中的children属性保存了当前节点的所有子虚拟节点（child virtual node），所以只需要将vnode中的children属性循环一遍，将每个子虚拟节点都执行一遍创建元素的逻辑，就可以实现我们想要的功能。<br>创建子节点时，子节点的父节点就是当前刚创建出来的这个节点，所以子节点被创建后，会被插入到当前节点的下面。当所有子节点都创建完并插入到当前节点中之后，我们把当前节点插入到指定父节点的下面。如果这个指定父节点已经被渲染到视图中，那么将当前这个节点插入进去之后，会将当前节点（包括其子节点）渲染到视图中。<br>除了元素节点外，其实还要创建注释节点和文本节点。<br>在创建节点时，如果vnode中不存在tag属性，那么它可能会是另外两中节点：注释节点和文本节点。<br>当发现一个vnode的tag属性不存在时，我们可以用isComment属性来判断它是注释节点还是文本节点。如果是文本节点，则调用当前环境下的createTextNode方法来创建真实的文本节点并将其插入到指定的父节点中；如果是注释节点，则调用当前环境下的createComment方法来创建真实的注释节点并将其插入到指定的父节点中。</p>
+<h2 id="删除节点-1"><a href="#删除节点-1" class="headerlink" title="删除节点"></a>删除节点</h2><p>删除节点的过程非常简单。在Vue中其实现逻辑如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeVnodes</span> (<span class="params">vnodes, startIdx, endIdx</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (; startIdx &lt;= endIdx; ++startIdx) &#123;</span><br><span class="line">    <span class="keyword">const</span> ch = vnodes[startIdx]</span><br><span class="line">    <span class="keyword">if</span> (isDef(ch)) &#123;</span><br><span class="line">      removeNode(ch.elm)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单来说，上面代码实现的功能是删除vnodes数组中从startIdx指定的位置到endIdx指定位置的内容。<br>reomveNode用于删除视图中的单个节点，而removeVnodes用于删除一组指定的节点。<br>removeNode实现逻辑如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> nodeOps = &#123;</span><br><span class="line">  removeChild (node, child) &#123;</span><br><span class="line">    node.removeChild(child)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeNode</span> (<span class="params">el</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> parent = nodeOps.parentNode(el)</span><br><span class="line">  <span class="keyword">if</span> (isDef(parent)) &#123;</span><br><span class="line">    nodeOps.removeChild(parent, el)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码的逻辑是将当前元素从它的父节点中删除，其中nodeOps是对节点操作的封装。<br>将DOM元素操作方法进行封装涉及跨平台渲染的知识。</p>
+<h2 id="更新节点-1"><a href="#更新节点-1" class="headerlink" title="更新节点"></a>更新节点</h2><h3 id="静态节点"><a href="#静态节点" class="headerlink" title="静态节点"></a>静态节点</h3><p>在更新节点时，首先需要判断新旧两个虚拟节点是否是静态节点，如果是，就不需要进行更新操作。<br>静态节点指的是那些一旦渲染到界面上之后，无论日后状态如何变化，都不会发生任何变化的节点。<br>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>静态节点<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>上面这个HTML就是一个静态节点，它不会因为状态的变化而发生变化。</p>
+<h3 id="新虚拟节点有文本属性"><a href="#新虚拟节点有文本属性" class="headerlink" title="新虚拟节点有文本属性"></a>新虚拟节点有文本属性</h3><p>当新旧两个虚拟节点不是静态节点，并且有不同的属性时，要以新虚拟节点为准来更新视图。根据新节点是否有text属性，更新节点可以分为两种不同的情况。<br>如果新生成的虚拟节点有text属性，那么不论之前旧节点的子节点是什么，直接调用setTextContent来将视图中DOM节点的内容改为虚拟节点的text属性所保存的文字。<br>如果之前的旧节点也是文本，并且和新节点的文本相同，那么就不需要执行setTextContent方法来重复设置相同的文本。</p>
+<h3 id="新虚拟节点无文本属性"><a href="#新虚拟节点无文本属性" class="headerlink" title="新虚拟节点无文本属性"></a>新虚拟节点无文本属性</h3><p>如果新创建的虚拟节点没有text属性，那么它就是一个元素节点。元素节点通常会有子节点，也就是children属性，但也有可能没有子节点，所以存在两中不同的情况。</p>
+<h4 id="有children的情况"><a href="#有children的情况" class="headerlink" title="有children的情况"></a>有children的情况</h4><p>当新创建的虚拟节点有children属性时，其实还会有两种情况，那就是要看旧虚拟节点是否有children属性。<br>如果旧虚拟节点也有children属性，那么要对新旧两个虚拟节点的children进行一个更详细的对比并更新。更新children可能会移动某个子节点的位置，也有可能会删除或新增某个子节点。<br>如果旧节点没有children属性，那么说明旧虚拟节点要么是一个空标签，要么是有文本的文本节点。如果是文本节点，那么先把文本清空让它变成空标签，然后将新虚拟节点中的children挨个创建成真实的DOM元素节点并将其插入到视图中的DOM节点下面。</p>
+<h4 id="无children的情况"><a href="#无children的情况" class="headerlink" title="无children的情况"></a>无children的情况</h4><p>当新创建的虚拟节点既没有text属性也没有children属性时，这说明这个新创建的节点是一个空节点，这是如果旧虚拟节点中有子节点就删除子节点，有文本就删除文本。最后达到视图中是空标签的目的</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：patch</li>
+        <li>Post author：yyang</li>
+        <li>Create time：2021-02-03 01:46:27</li>
+        <li>
+            Post link：https://yyang.blog.cn/2021/02/03/patch/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/02/08/%E6%A8%A1%E7%89%88%E7%BC%96%E8%AF%91/"
+                        >
+                            <span class="left arrow-icon flex-center" >
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">模版编译</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/01/26/VNode/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VNode</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center" >
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                    
+                </main>
+
+            </div>
+
+            <div class="page-main-content-bottom">
+                <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span> -
+            
+            2021 <i class="fas fa-heart icon-animate"></i> <a href="/">yyang</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a class="theme-version" target="_blank"></a>
+        </div>
+    </div>
+</footer>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="sidebar-tools">
+        <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fas fa-search"></i>
+            </li>
+        
+
+        
+
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+    </ul>
+</div>
+
+    </div>
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-top flex-center">
+            <i class="fas fa-arrow-up"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="tools-ul-1">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+    </ul>
+</div>
+
+    </div>
+
+    <!-- page aside -->
+    <aside class="page-aside">
+        
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#patch%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">patch介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%A2%9E%E8%8A%82%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">新增节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">删除节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%8A%82%E7%82%B9"><span class="nav-number">1.3.</span> <span class="nav-text">更新节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">创建节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9-1"><span class="nav-number">3.</span> <span class="nav-text">删除节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E8%8A%82%E7%82%B9-1"><span class="nav-number">4.</span> <span class="nav-text">更新节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%8A%82%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">静态节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E8%99%9A%E6%8B%9F%E8%8A%82%E7%82%B9%E6%9C%89%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="nav-number">4.2.</span> <span class="nav-text">新虚拟节点有文本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E8%99%9A%E6%8B%9F%E8%8A%82%E7%82%B9%E6%97%A0%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7"><span class="nav-number">4.3.</span> <span class="nav-text">新虚拟节点无文本属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89children%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">4.3.1.</span> <span class="nav-text">有children的情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0children%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">4.3.2.</span> <span class="nav-text">无children的情况</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        
+    </aside>
+
+    <!-- image viewer -->
+    <div class="image-viewer-container">
+    <div class="img-box">
+        <img src="">
+    </div>
+</div>
+
+
+</div>
+
+
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fas fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/dark-light-toggle.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/local-search.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/left-side-toggle.js"></script>
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/code-copy.js"></script>
+    
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/toc.js"></script>
+    
+
+
+</body>
+</html>
