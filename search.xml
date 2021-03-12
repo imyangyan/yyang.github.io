@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>HTML</title>
-    <url>/2021/03/02/HTML/</url>
-    <content><![CDATA[<h2 id="如何理解HTML语义化？"><a href="#如何理解HTML语义化？" class="headerlink" title="如何理解HTML语义化？"></a>如何理解HTML语义化？</h2><p>HTML语义化就是使用正确的标签，例如段落使用p标签，标题使用h1标签，文章使用article标签，视频使用video标签等等。<br>从前端发展历史来看，最开始是后台开发人员使用table布局，容易造成table嵌套，后期维护困难；然后是美工人员使用div+css布局，不够语义化，不知道各个div之间的区别；然后是前端阶段使用正确的标签来完成页面。</p>
-<h2 id="meta-viewport-是做什么用的，怎么写？"><a href="#meta-viewport-是做什么用的，怎么写？" class="headerlink" title="meta viewport 是做什么用的，怎么写？"></a>meta viewport 是做什么用的，怎么写？</h2><p>是让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="用过哪些HTML5标签？"><a href="#用过哪些HTML5标签？" class="headerlink" title="用过哪些HTML5标签？"></a>用过哪些HTML5标签？</h2><p>常见的内容相关的标签：header main footer article等等<br>功能相关的：</p>
-<ul>
-<li>canvas<br>作用：Canvas API提供了一个通过JavaScript和HTML的canvas标签来绘制图形的方式。它可以用于动画、游戏画面、数据可视化、图片编辑以及实时视频处理等方面。<br>基础示例：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.getELementById(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;green&#x27;</span></span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">150</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
-<li>video<br>作用：在HTML中嵌入媒体播放器<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Simple video example --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;videofile.ogg&quot;</span> <span class="attr">autoplay</span> <span class="attr">poster</span>=<span class="string">&quot;posterimage.jpg&quot;</span>&gt;</span></span><br><span class="line">  抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;videofile.ogg&quot;</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  并用你喜欢的播放器观看!</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Video with subtitles --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;foo.ogg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">track</span> <span class="attr">kind</span>=<span class="string">&quot;subtitles&quot;</span> <span class="attr">src</span>=<span class="string">&quot;foo.en.vtt&quot;</span> <span class="attr">srclang</span>=<span class="string">&quot;en&quot;</span> <span class="attr">label</span>=<span class="string">&quot;English&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">track</span> <span class="attr">kind</span>=<span class="string">&quot;subtitles&quot;</span> <span class="attr">src</span>=<span class="string">&quot;foo.sv.vtt&quot;</span> <span class="attr">srclang</span>=<span class="string">&quot;sv&quot;</span> <span class="attr">label</span>=<span class="string">&quot;Svenska&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>audio<br>作用：在文档中嵌入音频<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Simple audio playback --&gt;</span></span><br><span class="line">&lt;audio</span><br><span class="line">  src=&quot;AudioTest.ogg&quot;</span><br><span class="line">  autoplay&gt;</span><br><span class="line">  Your browser does not support the <span class="tag">&lt;<span class="name">code</span>&gt;</span>audio<span class="tag">&lt;/<span class="name">code</span>&gt;</span> element.</span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="什么是H5？"><a href="#什么是H5？" class="headerlink" title="什么是H5？"></a>什么是H5？</h2>H5其实是一种解决方案，是一个炫酷的移动端onepage网站的解决方案，不只是包括HTML5，也包含了全部的前端基本知识。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>面试题</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Array的变化侦测</title>
     <url>/2021/01/19/Array%E7%9A%84%E5%8F%98%E5%8C%96%E4%BE%A6%E6%B5%8B/</url>
     <content><![CDATA[<p>为什么Array的侦测方式与Object的不同，因为Object使用getter/setter实现的，而如果使用Array原型上的方法来改变数组的内容就不能触发getter/setter。</p>
@@ -58,6 +39,140 @@
 ]]></content>
       <categories>
         <category>深入浅出Vue. js</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>CSS</title>
+    <url>/2021/03/04/CSS/</url>
+    <content><![CDATA[<h1 id="两种盒模型分别说一下？"><a href="#两种盒模型分别说一下？" class="headerlink" title="两种盒模型分别说一下？"></a>两种盒模型分别说一下？</h1><p>CSS盒模型本质上是一个盒子，盒子包裹着HTML元素，盒子由四个属性组成，从内到外分别是：content、padding、border、margin。</p>
+<h2 id="盒模型的分类"><a href="#盒模型的分类" class="headerlink" title="盒模型的分类"></a>盒模型的分类</h2><p>两种盒模型分别是：</p>
+<ul>
+<li>W3C盒子模型（标准盒模型）</li>
+<li>IE盒子模型（怪异盒模型）</li>
+</ul>
+<h2 id="两种盒模型的区别"><a href="#两种盒模型的区别" class="headerlink" title="两种盒模型的区别"></a>两种盒模型的区别</h2><p>宽度和高度的计算方式不同</p>
+<p>标准盒模型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">width = content-width</span><br><span class="line">height = content-height</span><br></pre></td></tr></table></figure>
+<p>怪异盒模型：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">width = content-width + padding-width + border-width</span><br><span class="line">height = content-height + padding-height + border-height</span><br></pre></td></tr></table></figure>
+<h2 id="如何设置这两个类型"><a href="#如何设置这两个类型" class="headerlink" title="如何设置这两个类型"></a>如何设置这两个类型</h2><p>标准盒模型</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">content-box</span></span><br></pre></td></tr></table></figure>
+<p>怪异盒模型</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">border-box</span></span><br></pre></td></tr></table></figure>
+<h1 id="如何垂直居中？"><a href="#如何垂直居中？" class="headerlink" title="如何垂直居中？"></a>如何垂直居中？</h1><ul>
+<li>使用table自带功能</li>
+<li>给child设置before、after，设置为高度100%、inline-block，给parent设置text-align：center；（parent需要设置高度，child需要设置宽度）</li>
+<li>div装table</li>
+<li>使用-margin：把parent相对定位，child绝对定位，设置left：50%；top：50%；然后设置-margin-top为child高度的一半，-margin-left为宽度的一半。（child需要设置高度和宽度）</li>
+<li>使用transform：把parent相对定位，child绝对定位，设置left：50%；top：50%；然后设置transform: translate(-50%,-50%);（无需确定子元素高度宽度）</li>
+<li>使用margin：auto；：把parent相对定位，child绝对定位，设置left：0；top：0；right：0；bottom：0；然后设置margin：auto；</li>
+<li>flex布局：parent设置display: flex;justify-content: center;align-items: center;</li>
+</ul>
+<h1 id="flex怎么用？常用属性有哪些？"><a href="#flex怎么用？常用属性有哪些？" class="headerlink" title="flex怎么用？常用属性有哪些？"></a>flex怎么用？常用属性有哪些？</h1><p>flex用法：设置display为flex或者inline-flex。（设置为flex布局以后，子元素的float、clear、vertical-align属性将失效）</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>采用Flex布局的元素称为Flex 容器（flex container）。它的所有子元素自动成为容器成员，成为Flex 项目（flex item）。<br>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。<br>项目默认沿主轴排列。</p>
+<h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><ul>
+<li><a href="#flex-direction%E5%B1%9E%E6%80%A7">flex-direction属性</a></li>
+<li><a href="#flex-wrap%E5%B1%9E%E6%80%A7">flex-wrap属性</a></li>
+<li><a href="#flex-flow%E5%B1%9E%E6%80%A7">flex-flow属性</a></li>
+<li><a href="#justify-content%E5%B1%9E%E6%80%A7">justify-content属性</a></li>
+<li><a href="#align-items%E5%B1%9E%E6%80%A7">align-items属性</a></li>
+<li><a href="#align-content%E5%B1%9E%E6%80%A7">align-content属性</a></li>
+</ul>
+<h3 id="flex-direction属性"><a href="#flex-direction属性" class="headerlink" title="flex-direction属性"></a>flex-direction属性</h3><p>flex-direction属性决定主轴的方向（即项目的排列方向）</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可能有4个值。</p>
+<ul>
+<li>row（默认值）：主轴为水平方向，起点在左端</li>
+<li>row-reverse：主轴为水平方向，起点在右端</li>
+<li>column：主轴为垂直方向，起点在上沿</li>
+<li>column-reverse：主轴为垂直方向，起点在下沿</li>
+</ul>
+<h3 id="flex-wrap属性"><a href="#flex-wrap属性" class="headerlink" title="flex-wrap属性"></a>flex-wrap属性</h3><p>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可能取三个值。</p>
+<ul>
+<li>nowrap（默认）：不换行。</li>
+<li>wrap：换行，第一行在上方。</li>
+<li>wrap-reverse：换行，第一行在下方。</li>
+</ul>
+<h3 id="flex-flow属性"><a href="#flex-flow属性" class="headerlink" title="flex-flow属性"></a>flex-flow属性</h3><p>flex-flow属性是flex-direction属性与flex-wrap属性的简写形式，默认值为row nowrap。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="justify-content属性"><a href="#justify-content属性" class="headerlink" title="justify-content属性"></a>justify-content属性</h3><p>justify-content属性定义了项目在主轴上的对齐方式。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可能取五个值，具体对齐方式与轴的方向有关。下面假设主轴从左到右。</p>
+<ul>
+<li>flex-start（默认值）：左对齐</li>
+<li>flex-end：右对齐</li>
+<li>center：居中</li>
+<li>space-between：两端对齐，项目之间的间隔都相等</li>
+<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</li>
+</ul>
+<h3 id="align-items属性"><a href="#align-items属性" class="headerlink" title="align-items属性"></a>align-items属性</h3><p>align-items属性定义项目在交叉轴上如何对齐。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可能取五个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
+<ul>
+<li>flex-start：交叉轴的起点对齐</li>
+<li>flex-end：交叉轴的终点对齐</li>
+<li>center：交叉轴的中点对齐</li>
+<li>baseline：项目的第一行文字的基线对齐</li>
+<li>stretch（默认值）：如果项目为设置高度或者设置为auto，将占满整个容器的高度</li>
+</ul>
+<h3 id="align-content属性"><a href="#align-content属性" class="headerlink" title="align-content属性"></a>align-content属性</h3><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，则该属性不起作用。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性可能取六个值。</p>
+<ul>
+<li>flex-start：与交叉轴起点对齐</li>
+<li>flex-end：与交叉轴终点对齐</li>
+<li>center：与交叉轴的中点对齐</li>
+<li>space-between：与交叉轴两端对齐，轴线之间间隔平均分布</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍</li>
+<li>stretch（默认值）:轴线占满整个交叉轴</li>
+</ul>
+<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><ul>
+<li><a href="#order%E5%B1%9E%E6%80%A7">order属性</a></li>
+<li><a href="#flex-grow%E5%B1%9E%E6%80%A7">flex-grow属性</a></li>
+<li><a href="#flex-shrink%E5%B1%9E%E6%80%A7">flex-shrink属性</a></li>
+<li><a href="#flex-basis%E5%B1%9E%E6%80%A7">flex-basis属性</a></li>
+<li><a href="#flex%E5%B1%9E%E6%80%A7">flex属性</a></li>
+<li><a href="#align-self%E5%B1%9E%E6%80%A7">align-self</a></li>
+</ul>
+<h3 id="order属性"><a href="#order属性" class="headerlink" title="order属性"></a>order属性</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="flex-grow属性"><a href="#flex-grow属性" class="headerlink" title="flex-grow属性"></a>flex-grow属性</h3><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h3><p>flex-shrink属性定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="flex-basis属性"><a href="#flex-basis属性" class="headerlink" title="flex-basis属性"></a>flex-basis属性</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间。它的默认值为auto，即项目的本来大小。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>它可以设为跟width或height属性一样的值，则项目将占据固定空间。</p>
+<h3 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h3><p>flex属性是flex-grow属性、flex-shrink属性和flex-basis属性的简写。默认值为0 1 auto。后两个属性可选。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该属性有两个快捷值：auto（1 1 auto）和 none（0 0 auto）</p>
+<h3 id="align-self属性"><a href="#align-self属性" class="headerlink" title="align-self属性"></a>align-self属性</h3><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h1><p>块格式化上下文（Block Formatting Context， BFC）是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素发生交互的区域。<br>块格式化上下文包含创建它的元素内部的所有内容。</p>
+<h1 id="清除浮动代码。"><a href="#清除浮动代码。" class="headerlink" title="清除浮动代码。"></a>清除浮动代码。</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>面试题</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>HTML</title>
+    <url>/2021/03/02/HTML/</url>
+    <content><![CDATA[<h2 id="如何理解HTML语义化？"><a href="#如何理解HTML语义化？" class="headerlink" title="如何理解HTML语义化？"></a>如何理解HTML语义化？</h2><p>HTML语义化就是使用正确的标签，例如段落使用p标签，标题使用h1标签，文章使用article标签，视频使用video标签等等。<br>从前端发展历史来看，最开始是后台开发人员使用table布局，容易造成table嵌套，后期维护困难；然后是美工人员使用div+css布局，不够语义化，不知道各个div之间的区别；然后是前端阶段使用正确的标签来完成页面。</p>
+<h2 id="meta-viewport-是做什么用的，怎么写？"><a href="#meta-viewport-是做什么用的，怎么写？" class="headerlink" title="meta viewport 是做什么用的，怎么写？"></a>meta viewport 是做什么用的，怎么写？</h2><p>是让当前viewport的宽度等于设备的宽度，同时不允许用户手动缩放。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="用过哪些HTML5标签？"><a href="#用过哪些HTML5标签？" class="headerlink" title="用过哪些HTML5标签？"></a>用过哪些HTML5标签？</h2><p>常见的内容相关的标签：header main footer article等等<br>功能相关的：</p>
+<ul>
+<li>canvas<br>作用：Canvas API提供了一个通过JavaScript和HTML的canvas标签来绘制图形的方式。它可以用于动画、游戏画面、数据可视化、图片编辑以及实时视频处理等方面。<br>基础示例：<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.getELementById(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;green&#x27;</span></span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">150</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure></li>
+<li>video<br>作用：在HTML中嵌入媒体播放器<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Simple video example --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;videofile.ogg&quot;</span> <span class="attr">autoplay</span> <span class="attr">poster</span>=<span class="string">&quot;posterimage.jpg&quot;</span>&gt;</span></span><br><span class="line">  抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;videofile.ogg&quot;</span>&gt;</span>下载<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  并用你喜欢的播放器观看!</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Video with subtitles --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;foo.ogg&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">track</span> <span class="attr">kind</span>=<span class="string">&quot;subtitles&quot;</span> <span class="attr">src</span>=<span class="string">&quot;foo.en.vtt&quot;</span> <span class="attr">srclang</span>=<span class="string">&quot;en&quot;</span> <span class="attr">label</span>=<span class="string">&quot;English&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">track</span> <span class="attr">kind</span>=<span class="string">&quot;subtitles&quot;</span> <span class="attr">src</span>=<span class="string">&quot;foo.sv.vtt&quot;</span> <span class="attr">srclang</span>=<span class="string">&quot;sv&quot;</span> <span class="attr">label</span>=<span class="string">&quot;Svenska&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>audio<br>作用：在文档中嵌入音频<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Simple audio playback --&gt;</span></span><br><span class="line">&lt;audio</span><br><span class="line">  src=&quot;AudioTest.ogg&quot;</span><br><span class="line">  autoplay&gt;</span><br><span class="line">  Your browser does not support the <span class="tag">&lt;<span class="name">code</span>&gt;</span>audio<span class="tag">&lt;/<span class="name">code</span>&gt;</span> element.</span><br><span class="line"><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="什么是H5？"><a href="#什么是H5？" class="headerlink" title="什么是H5？"></a>什么是H5？</h2>H5其实是一种解决方案，是一个炫酷的移动端onepage网站的解决方案，不只是包括HTML5，也包含了全部的前端基本知识。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>面试题</category>
       </categories>
   </entry>
   <entry>
@@ -212,121 +327,6 @@ vm.$watch返回一个取消观察函数，用来停止触发回调：<figure cla
       </categories>
   </entry>
   <entry>
-    <title>CSS</title>
-    <url>/2021/03/04/CSS/</url>
-    <content><![CDATA[<h1 id="两种盒模型分别说一下？"><a href="#两种盒模型分别说一下？" class="headerlink" title="两种盒模型分别说一下？"></a>两种盒模型分别说一下？</h1><p>CSS盒模型本质上是一个盒子，盒子包裹着HTML元素，盒子由四个属性组成，从内到外分别是：content、padding、border、margin。</p>
-<h2 id="盒模型的分类"><a href="#盒模型的分类" class="headerlink" title="盒模型的分类"></a>盒模型的分类</h2><p>两种盒模型分别是：</p>
-<ul>
-<li>W3C盒子模型（标准盒模型）</li>
-<li>IE盒子模型（怪异盒模型）</li>
-</ul>
-<h2 id="两种盒模型的区别"><a href="#两种盒模型的区别" class="headerlink" title="两种盒模型的区别"></a>两种盒模型的区别</h2><p>宽度和高度的计算方式不同</p>
-<p>标准盒模型：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">width = content-width</span><br><span class="line">height = content-height</span><br></pre></td></tr></table></figure>
-<p>怪异盒模型：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">width = content-width + padding-width + border-width</span><br><span class="line">height = content-height + padding-height + border-height</span><br></pre></td></tr></table></figure>
-<h2 id="如何设置这两个类型"><a href="#如何设置这两个类型" class="headerlink" title="如何设置这两个类型"></a>如何设置这两个类型</h2><p>标准盒模型</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">content-box</span></span><br></pre></td></tr></table></figure>
-<p>怪异盒模型</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">box-sizing</span>: <span class="selector-tag">border-box</span></span><br></pre></td></tr></table></figure>
-<h1 id="如何垂直居中？"><a href="#如何垂直居中？" class="headerlink" title="如何垂直居中？"></a>如何垂直居中？</h1><ul>
-<li>使用table自带功能</li>
-<li>给child设置before、after，设置为高度100%、inline-block，给parent设置text-align：center；（parent需要设置高度，child需要设置宽度）</li>
-<li>div装table</li>
-<li>使用-margin：把parent相对定位，child绝对定位，设置left：50%；top：50%；然后设置-margin-top为child高度的一半，-margin-left为宽度的一半。（child需要设置高度和宽度）</li>
-<li>使用transform：把parent相对定位，child绝对定位，设置left：50%；top：50%；然后设置transform: translate(-50%,-50%);（无需确定子元素高度宽度）</li>
-<li>使用margin：auto；：把parent相对定位，child绝对定位，设置left：0；top：0；right：0；bottom：0；然后设置margin：auto；</li>
-<li>flex布局：parent设置display: flex;justify-content: center;align-items: center;</li>
-</ul>
-<h1 id="flex怎么用？常用属性有哪些？"><a href="#flex怎么用？常用属性有哪些？" class="headerlink" title="flex怎么用？常用属性有哪些？"></a>flex怎么用？常用属性有哪些？</h1><p>flex用法：设置display为flex或者inline-flex。（设置为flex布局以后，子元素的float、clear、vertical-align属性将失效）</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>采用Flex布局的元素称为Flex 容器（flex container）。它的所有子元素自动成为容器成员，成为Flex 项目（flex item）。<br>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。<br>项目默认沿主轴排列。</p>
-<h2 id="容器的属性"><a href="#容器的属性" class="headerlink" title="容器的属性"></a>容器的属性</h2><ul>
-<li><a href="#flex-direction%E5%B1%9E%E6%80%A7">flex-direction属性</a></li>
-<li><a href="#flex-wrap%E5%B1%9E%E6%80%A7">flex-wrap属性</a></li>
-<li><a href="#flex-flow%E5%B1%9E%E6%80%A7">flex-flow属性</a></li>
-<li><a href="#justify-content%E5%B1%9E%E6%80%A7">justify-content属性</a></li>
-<li><a href="#align-items%E5%B1%9E%E6%80%A7">align-items属性</a></li>
-<li><a href="#align-content%E5%B1%9E%E6%80%A7">align-content属性</a></li>
-</ul>
-<h3 id="flex-direction属性"><a href="#flex-direction属性" class="headerlink" title="flex-direction属性"></a>flex-direction属性</h3><p>flex-direction属性决定主轴的方向（即项目的排列方向）</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它可能有4个值。</p>
-<ul>
-<li>row（默认值）：主轴为水平方向，起点在左端</li>
-<li>row-reverse：主轴为水平方向，起点在右端</li>
-<li>column：主轴为垂直方向，起点在上沿</li>
-<li>column-reverse：主轴为垂直方向，起点在下沿</li>
-</ul>
-<h3 id="flex-wrap属性"><a href="#flex-wrap属性" class="headerlink" title="flex-wrap属性"></a>flex-wrap属性</h3><p>默认情况下，项目都排在一条线（又称“轴线”）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它可能取三个值。</p>
-<ul>
-<li>nowrap（默认）：不换行。</li>
-<li>wrap：换行，第一行在上方。</li>
-<li>wrap-reverse：换行，第一行在下方。</li>
-</ul>
-<h3 id="flex-flow属性"><a href="#flex-flow属性" class="headerlink" title="flex-flow属性"></a>flex-flow属性</h3><p>flex-flow属性是flex-direction属性与flex-wrap属性的简写形式，默认值为row nowrap。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="justify-content属性"><a href="#justify-content属性" class="headerlink" title="justify-content属性"></a>justify-content属性</h3><p>justify-content属性定义了项目在主轴上的对齐方式。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它可能取五个值，具体对齐方式与轴的方向有关。下面假设主轴从左到右。</p>
-<ul>
-<li>flex-start（默认值）：左对齐</li>
-<li>flex-end：右对齐</li>
-<li>center：居中</li>
-<li>space-between：两端对齐，项目之间的间隔都相等</li>
-<li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</li>
-</ul>
-<h3 id="align-items属性"><a href="#align-items属性" class="headerlink" title="align-items属性"></a>align-items属性</h3><p>align-items属性定义项目在交叉轴上如何对齐。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它可能取五个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
-<ul>
-<li>flex-start：交叉轴的起点对齐</li>
-<li>flex-end：交叉轴的终点对齐</li>
-<li>center：交叉轴的中点对齐</li>
-<li>baseline：项目的第一行文字的基线对齐</li>
-<li>stretch（默认值）：如果项目为设置高度或者设置为auto，将占满整个容器的高度</li>
-</ul>
-<h3 id="align-content属性"><a href="#align-content属性" class="headerlink" title="align-content属性"></a>align-content属性</h3><p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，则该属性不起作用。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该属性可能取六个值。</p>
-<ul>
-<li>flex-start：与交叉轴起点对齐</li>
-<li>flex-end：与交叉轴终点对齐</li>
-<li>center：与交叉轴的中点对齐</li>
-<li>space-between：与交叉轴两端对齐，轴线之间间隔平均分布</li>
-<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍</li>
-<li>stretch（默认值）:轴线占满整个交叉轴</li>
-</ul>
-<h2 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h2><ul>
-<li><a href="#order%E5%B1%9E%E6%80%A7">order属性</a></li>
-<li><a href="#flex-grow%E5%B1%9E%E6%80%A7">flex-grow属性</a></li>
-<li><a href="#flex-shrink%E5%B1%9E%E6%80%A7">flex-shrink属性</a></li>
-<li><a href="#flex-basis%E5%B1%9E%E6%80%A7">flex-basis属性</a></li>
-<li><a href="#flex%E5%B1%9E%E6%80%A7">flex属性</a></li>
-<li><a href="#align-self%E5%B1%9E%E6%80%A7">align-self</a></li>
-</ul>
-<h3 id="order属性"><a href="#order属性" class="headerlink" title="order属性"></a>order属性</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">order</span>: &lt;integer&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-grow属性"><a href="#flex-grow属性" class="headerlink" title="flex-grow属性"></a>flex-grow属性</h3><p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-grow</span>: &lt;number&gt;; <span class="comment">/* default 0 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-shrink属性"><a href="#flex-shrink属性" class="headerlink" title="flex-shrink属性"></a>flex-shrink属性</h3><p>flex-shrink属性定义项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-shrink</span>: &lt;number&gt;; <span class="comment">/* default 1 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="flex-basis属性"><a href="#flex-basis属性" class="headerlink" title="flex-basis属性"></a>flex-basis属性</h3><p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间。它的默认值为auto，即项目的本来大小。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex-basis</span>: &lt;length&gt; | auto; <span class="comment">/* default auto */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>它可以设为跟width或height属性一样的值，则项目将占据固定空间。</p>
-<h3 id="flex属性"><a href="#flex属性" class="headerlink" title="flex属性"></a>flex属性</h3><p>flex属性是flex-grow属性、flex-shrink属性和flex-basis属性的简写。默认值为0 1 auto。后两个属性可选。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: none | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>该属性有两个快捷值：auto（1 1 auto）和 none（0 0 auto）</p>
-<h3 id="align-self属性"><a href="#align-self属性" class="headerlink" title="align-self属性"></a>align-self属性</h3><p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">align-self</span>: auto | flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="BFC是什么？"><a href="#BFC是什么？" class="headerlink" title="BFC是什么？"></a>BFC是什么？</h1><p>块格式化上下文（Block Formatting Context， BFC）是Web页面的可视CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素发生交互的区域。<br>块格式化上下文包含创建它的元素内部的所有内容。</p>
-<h1 id="清除浮动代码。"><a href="#清除浮动代码。" class="headerlink" title="清除浮动代码。"></a>清除浮动代码。</h1><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>面试题</category>
-      </categories>
-  </entry>
-  <entry>
     <title>实现Promise</title>
     <url>/2021/03/12/%E5%AE%9E%E7%8E%B0Promise/</url>
     <content><![CDATA[<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p>使用ES6的语法，构造一个类，通过实例化的方式返回promise对象，由于Promise已经存在，暂时命名为Deferred。</p>
@@ -365,17 +365,6 @@ vm.$watch返回一个取消观察函数，用来停止触发回调：<figure cla
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Deferred</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="title">race</span>(<span class="params">promises</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 非数组参数，抛出异常</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(promises)) &#123;</span><br><span class="line">      <span class="keyword">return</span> Deferred.reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">&#x27;args must be an array&#x27;</span>))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> length = promises.length</span><br><span class="line">    <span class="keyword">const</span> promise = <span class="keyword">new</span> Deferred(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 如果数组为空，返回空结果</span></span><br><span class="line">      <span class="keyword">if</span> (length === <span class="number">0</span>) <span class="keyword">return</span> resolve([])</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">done</span>(<span class="params">index, value</span>) </span>&#123;</span><br><span class="line">        doThenFunc(promise, value, resolve, reject)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 放入异步队列</span></span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">          done(i, promise[i])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> promise</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
-    <title>虚拟DOM简介</title>
-    <url>/2021/01/23/%E8%99%9A%E6%8B%9FDOM%E7%AE%80%E4%BB%8B/</url>
-    <content><![CDATA[<h2 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h2><p>在程序运行时，状态会不断发生变化。每当状态发生变化时，都需要重新渲染。如何确定状态中发生了什么变化以及需要在哪里更新DOM？<br>在这种情况下，最简单粗暴的解决方式是，既不需要关心状态发生了什么变化，也不需要关心在哪里更新DOM，只需要把所有DOM全删 ，然后使用状态重新生成一份DOM，并将其输出到页面上显示出来就好了。<br>但是访问DOM是非常昂贵的。按照上面说的方式做，会造成相当多的性能浪费。状态变化通常只有有限的几个节点需要重新渲染，所以我们不仅需要找出哪里需要更新，还需要尽可能少地访问DOM。<br>这个问题有很多种解决方案。在Angular就是脏检查的流程，React中使用虚拟DOM。因此，虚拟DOM本质上只是众多解决方案中的一种，可以用但并不一定必须用。<br>虚拟DOM的解决方式是通过状态生成一个虚拟节点树，然后使用虚拟节点树进行渲染。在渲染之前，会使用新生成的虚拟节点树和上一次生成的虚拟节点树进行对比，只渲染不用的部分。<br>虚拟节点树其实是由组件树建立起来的整个虚拟节点（Virtual Node，也经常简写为vnode）树。</p>
-<h2 id="为什么要引入虚拟DOM"><a href="#为什么要引入虚拟DOM" class="headerlink" title="为什么要引入虚拟DOM"></a>为什么要引入虚拟DOM</h2><p>Angular和React的变化侦测有一个共同点，那就是它们都不知道哪些状态变了。因此，就需要进行比较暴力的比对，React是通过虚拟DOM的比对，Angular是使用脏检查的流程。<br>Vue.js的变化侦测和它们都不一样，可以在一定程度知道具体哪些状态发生了变化。Vue.js2.0开始引入了虚拟DOM。组件级别是一个watcher实例，就是说即便一个组件内有10个节点使用了某个状态，但其实也只有一个watcher在观察这个状态的变化。所以当这个状态发生变化时，只能通知到组件，然后组件内部通过虚拟DOM去进行比对与渲染。</p>
-<h2 id="Vue-js中的虚拟DOM"><a href="#Vue-js中的虚拟DOM" class="headerlink" title="Vue.js中的虚拟DOM"></a>Vue.js中的虚拟DOM</h2><p>在Vue中，我们使用模版来描述状态与DOM之间的映射关系。Vue通过编译将模版转换成渲染函数（render），执行渲染函数就可以得到一个虚拟节点树，使用这个虚拟节点树就可以渲染页面。<br>虚拟DOM的目标是将虚拟节点渲染到试图上。但是如果直接使用虚拟节点覆盖旧节点，会有很多不必要的DOM操作。为了避免不必要的DOM操作，虚拟DOM在虚拟节点映射到试图的过程中，将虚拟节点与上一次渲染视图所使用的就虚拟节点做对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其他无任何改动的DOM。</p>
-]]></content>
-      <categories>
-        <category>深入浅出Vue. js</category>
-      </categories>
-  </entry>
-  <entry>
     <title>模版编译</title>
     <url>/2021/02/08/%E6%A8%A1%E7%89%88%E7%BC%96%E8%AF%91/</url>
     <content><![CDATA[<p>Vue提供了模版语法，允许我们声明式地描述状态和DOM之间的绑定关系，然后通过模版来生成真实DOM并将其呈现在用户界面上。<br>在底层实现上，Vue会将模版编译成虚拟DOM渲染函数。当应用内部状态发生变化时，Vue可以结合响应式系统，找出最小数量的组件进行重新渲染以及最少量地进行DOM操作。</p>
@@ -395,6 +384,17 @@ vm.$watch返回一个取消观察函数，用来停止触发回调：<figure cla
 <h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p>解析器的目标很明确，只实现一个功能，那就是将模版解析成AST。<br>在解析器内部，分成了很多小解析器，其中包括过滤器解析器、文本解析器和HTML解析器。然后通过一条主线将这些解析器组装在一起。<br>在使用模版时，我们可以在其中使用过滤器，而过滤器解析器的作用就是用来解析过滤器的。<br>文本解析器的主要作用是用来解析带变量的文本。<br>最后是最重要的HTML解析器，它是解析器中最核心的模块，它的作用就是解析模块，每当解析到HTML标签的开始位置、结束位置、文本或注释时，都会触发钩子函数，然后将相关信息通过参数传递出来。<br>主线上做的事就是监听HTML解析器。每当触发钩子函数时，就生成一个对应的AST节点。生成AST前，会根据类型使用不同的方式生成不同的AST。例如，如果是文本节点，就生成文本类型的AST。<br>这个AST和vnode有点类似，都是使用js中的对象来表示节点。<br>当HTML解析器把所有模块都解析完毕后，AST也就生成好了。</p>
 <h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><p>优化器的目标是遍历AST，检测出所有静态子树并给其打标记。<br>当AST中的静态子树被打上标记后，每次重新渲染时，就不需要为打上标记的静态节点创建新的虚拟节点，而是直接克隆已存在的虚拟节点。在虚拟DOM的更新操作中，如果发现两个节点是同一个节点，正常情况下会对这两个节点进行更新，但是如果这两个节点是静态节点，则可以直接跳过更新节点的流程。<br>总体来说，优化器的主要作用是避免一些无用功来提升性能。因为静态节点除了首次渲染，后续不需要任何重新渲染操作。</p>
 <h3 id="代码生成器"><a href="#代码生成器" class="headerlink" title="代码生成器"></a>代码生成器</h3><p>代码生成器是模版编译的最后一步，它的作用是将AST转换成渲染函数中的内容，这个内容可以称为“代码字符串”。<br>代码字符串最终导出到外界使用时，会将代码字符串放到函数里，这个函数叫做渲染函数。</p>
+]]></content>
+      <categories>
+        <category>深入浅出Vue. js</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>虚拟DOM简介</title>
+    <url>/2021/01/23/%E8%99%9A%E6%8B%9FDOM%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h2 id="什么是虚拟DOM"><a href="#什么是虚拟DOM" class="headerlink" title="什么是虚拟DOM"></a>什么是虚拟DOM</h2><p>在程序运行时，状态会不断发生变化。每当状态发生变化时，都需要重新渲染。如何确定状态中发生了什么变化以及需要在哪里更新DOM？<br>在这种情况下，最简单粗暴的解决方式是，既不需要关心状态发生了什么变化，也不需要关心在哪里更新DOM，只需要把所有DOM全删 ，然后使用状态重新生成一份DOM，并将其输出到页面上显示出来就好了。<br>但是访问DOM是非常昂贵的。按照上面说的方式做，会造成相当多的性能浪费。状态变化通常只有有限的几个节点需要重新渲染，所以我们不仅需要找出哪里需要更新，还需要尽可能少地访问DOM。<br>这个问题有很多种解决方案。在Angular就是脏检查的流程，React中使用虚拟DOM。因此，虚拟DOM本质上只是众多解决方案中的一种，可以用但并不一定必须用。<br>虚拟DOM的解决方式是通过状态生成一个虚拟节点树，然后使用虚拟节点树进行渲染。在渲染之前，会使用新生成的虚拟节点树和上一次生成的虚拟节点树进行对比，只渲染不用的部分。<br>虚拟节点树其实是由组件树建立起来的整个虚拟节点（Virtual Node，也经常简写为vnode）树。</p>
+<h2 id="为什么要引入虚拟DOM"><a href="#为什么要引入虚拟DOM" class="headerlink" title="为什么要引入虚拟DOM"></a>为什么要引入虚拟DOM</h2><p>Angular和React的变化侦测有一个共同点，那就是它们都不知道哪些状态变了。因此，就需要进行比较暴力的比对，React是通过虚拟DOM的比对，Angular是使用脏检查的流程。<br>Vue.js的变化侦测和它们都不一样，可以在一定程度知道具体哪些状态发生了变化。Vue.js2.0开始引入了虚拟DOM。组件级别是一个watcher实例，就是说即便一个组件内有10个节点使用了某个状态，但其实也只有一个watcher在观察这个状态的变化。所以当这个状态发生变化时，只能通知到组件，然后组件内部通过虚拟DOM去进行比对与渲染。</p>
+<h2 id="Vue-js中的虚拟DOM"><a href="#Vue-js中的虚拟DOM" class="headerlink" title="Vue.js中的虚拟DOM"></a>Vue.js中的虚拟DOM</h2><p>在Vue中，我们使用模版来描述状态与DOM之间的映射关系。Vue通过编译将模版转换成渲染函数（render），执行渲染函数就可以得到一个虚拟节点树，使用这个虚拟节点树就可以渲染页面。<br>虚拟DOM的目标是将虚拟节点渲染到试图上。但是如果直接使用虚拟节点覆盖旧节点，会有很多不必要的DOM操作。为了避免不必要的DOM操作，虚拟DOM在虚拟节点映射到试图的过程中，将虚拟节点与上一次渲染视图所使用的就虚拟节点做对比，找出真正需要更新的节点来进行DOM操作，从而避免操作其他无任何改动的DOM。</p>
 ]]></content>
       <categories>
         <category>深入浅出Vue. js</category>
