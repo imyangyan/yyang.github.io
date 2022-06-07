@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <title>
-        Category: 面试题 |
+        实现简易版render |
         
         yyang&#39;s Blog
     </title>
@@ -63,7 +63,7 @@
                 </li>
             
                 <li class="menu-item">
-                    <a class="active"
+                    <a class=""
                        href="/categories"
                     >
                         分类
@@ -91,7 +91,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/categories">分类</a>
                 </li>
             
@@ -111,49 +111,88 @@
 
                     
                         <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fas fa-folder"></i> 面试题 (2)
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">实现简易版render</span>
         </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span>yyang</span>
+                        <span class="level">Lv2</span>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-calendar"></i> 2022-06-07 22:37:24
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">(2)</span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
             </div>
-            <ul class="article-list">
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/03/04/CSS/"
-                        >CSS</a>
-                        <span class="article-date">03-04</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/03/02/HTML/"
-                        >HTML</a>
-                        <span class="article-date">03-02</span>
-                    </li>
-                
-            </ul>
-        </section>
-    
-</div>
+        
 
+        <div class="article-content markdown-body">
+            <p>渲染器renderer的作用就是将虚拟DOM渲染为真实DOM。下面实现一个简易的render函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> vnode = &#123;</span><br><span class="line">  tag: <span class="string">&#x27;div&#x27;</span>,</span><br><span class="line">  props: &#123;</span><br><span class="line">    onClick: <span class="function">() =&gt;</span> alert(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  children: <span class="string">&#x27;click me&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">renderer</span>(<span class="params">vnode, container</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 使用 vnode.tag 作为标签名创建 DOM 元素</span></span><br><span class="line">  <span class="keyword">const</span> el = <span class="built_in">document</span>.createElement(vnode.tag)</span><br><span class="line">  <span class="comment">// 遍历 vnode.props 添加属性和事件</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> key <span class="keyword">in</span> vnode.props) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="regexp">/^on/</span>.test(key)) &#123;</span><br><span class="line">      <span class="comment">// key 以 on 开头则为事件</span></span><br><span class="line">      el.addEventListener(</span><br><span class="line">        key.substr(<span class="number">2</span>).toLowerCase(), <span class="comment">// onClick ---&gt; click</span></span><br><span class="line">        vnode.props[key]</span><br><span class="line">      )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      el.setAttribute(key, vnode.props[key])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 处理 children</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> vnode.children === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果 children 是字符串， 则是元素的文本子节点</span></span><br><span class="line">    el.appendChild(<span class="built_in">document</span>.createTextNode(vnode.children))</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(vnode.children)) &#123;</span><br><span class="line">    <span class="comment">// 递归调用 renderer</span></span><br><span class="line">    vnode.children.forEach(<span class="function"><span class="params">child</span> =&gt;</span> renderer(child, el))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  container.appendChild(el)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
-    </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    
 
-    
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>Post title：实现简易版render</li>
+        <li>Post author：yyang</li>
+        <li>Create time：2022-06-07 22:37:24</li>
+        <li>
+            Post link：https://yyang.blog.cn/2022/06/07/实现简易版render/
+        </li>
+        <li>
+            Copyright Notice：All articles in this blog are licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> unless stating additionally.
+        </li>
+    </ul>
 </div>
 
+            </div>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/28/Vue%E5%AE%9E%E7%8E%B0%E7%82%B9%E5%87%BB%E5%85%83%E7%B4%A0%E5%A4%96%E9%83%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vue实现点击元素外部自定义指令</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center" >
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
     </div>
 </div>
 
@@ -196,6 +235,10 @@
         
 
         <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
         
 
     </ul>
@@ -248,6 +291,12 @@
     <!-- page aside -->
     <aside class="page-aside">
         
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+        
     </aside>
 
     <!-- image viewer -->
@@ -298,6 +347,17 @@
     <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/local-search.js"></script>
 
 
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/left-side-toggle.js"></script>
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/code-copy.js"></script>
+    
+
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.0.4/source/js/toc.js"></script>
+    
 
 
 </body>
